@@ -1,0 +1,94 @@
+CREATE DATABASE LibraryDB;
+
+USE LibraryDB;
+
+CREATE TABLE LibraryBooks (
+    book_id INT PRIMARY KEY,
+    book_name VARCHAR(50),
+    author VARCHAR(50)
+);
+
+CREATE TABLE BookIssues (
+    issue_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    book_id INT
+);
+
+INSERT INTO LibraryBooks VALUES
+(101,'Java','James'),
+(102,'Python','Guido'),
+(103,'SQL','Codd'),
+(104,'C++','Bjarne');
+
+INSERT INTO BookIssues VALUES
+(1,'Bhavana',101),
+(2,'Mouni',102),
+(3,'Priya',105),
+(4,'Anu',103);
+
+-- INNER JOIN
+SELECT l.book_name, b.student_name
+FROM LibraryBooks l
+INNER JOIN BookIssues b
+ON l.book_id = b.book_id;
+
+-- LEFT JOIN
+SELECT l.book_name, b.student_name
+FROM LibraryBooks l
+LEFT JOIN BookIssues b
+ON l.book_id = b.book_id;
+
+-- RIGHT JOIN
+SELECT l.book_name, b.student_name
+FROM LibraryBooks l
+RIGHT JOIN BookIssues b
+ON l.book_id = b.book_id;
+
+-- CROSS JOIN
+SELECT l.book_name, b.student_name
+FROM LibraryBooks l
+CROSS JOIN BookIssues b;
+
+
+
+
+
+-- Create a database
+CREATE DATABASE company;
+
+-- Select the database
+USE company;
+
+-- Create employee table
+CREATE TABLE employee (
+    employee_id INT PRIMARY KEY,
+    department VARCHAR(50),
+    salary INT
+);
+
+-- Insert records
+INSERT INTO employee VALUES
+(101, 'HR', 30000),
+(102, 'HR', 45000),
+(103, 'IT', 60000),
+(104, 'IT', 75000),
+(105, 'IT', 70000),
+(106, 'Sales', 50000),
+(107, 'Sales', 65000),
+(108, 'Finance', 80000),
+(109, 'Finance', 72000),
+(110, 'Marketing', 55000),
+(111, 'Marketing', 62000),
+(112, 'HR', 40000),
+(113, 'Sales', 68000),
+(114, 'Finance', 90000),
+(115, 'IT', 85000);
+
+-- Display all records
+SELECT * FROM employee;
+
+-- Find the highest salary in each department
+SELECT department,
+       MAX(salary) AS highest_salary
+FROM employee
+GROUP BY department;
